@@ -38,8 +38,14 @@ window.addEventListener("load", function() {
     function displayReviews() {
         let reviewsList = JSON.parse(localStorage.getItem("reviewList")) || [];
 
+        //убиваем всех детей до первого (имя, оценка, текст)
         if (table.children.length != 0) {
-            table.innerHTML = ""
+            while (table.firstChild) {
+                if (table.children.length == 1) {
+                    break;
+                }
+                table.removeChild(table.lastChild);
+            }
         }
 
         for (let i = 0; i < reviewsList.length; i++) {
