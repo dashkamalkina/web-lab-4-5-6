@@ -5,26 +5,21 @@ window.onload = function () {
     podval.style.textAlign = 'center'
     podval.style.backgroundColor = '#eeee6e'
     podval.textContent = 'Page loaded in: ' + loadTime;
-}
+    let currentUrl = document.location;
 
-window.addEventListener('DOMContentLoaded', function () {
-    var _url = document.location.pathname
-    console.log(_url)
-    switch (_url){
-        case '/RitRit/review_page.html':
-            let reviewButton = document.getElementById('reviews_button');
-            console.log(reviewButton)
-            reviewButton.className += 'fq'
-            break
-        case '/RitRit/index.html':
-            let main_page_button = document.getElementById('main_page');
-            main_page_button.className += 'fq'
-            break
-        case '/RitRit/contacts.html':
-            let contact_page = document.getElementById('contacts_page');
-            contact_page.className += 'fq'
-            break
-        default: break;
+    // Получаем все пункты меню
+    let menuItems = document.querySelectorAll('.menu_element');
+    // Перебираем все пункты меню
+    console.log(menuItems)
+
+    for (let i = 0; i < menuItems.length; i++) {
+        // Получаем ссылку пункта меню
+        console.log(menuItems[i], currentUrl["href"].includes(menuItems[i].href))
+        // Проверяем, содержит ли ссылка текущий URL страницы
+        if (currentUrl["href"].includes(menuItems[i].href)) {
+            // Добавляем класс для активного состояния
+            menuItems[i].classList.add('fq');
+        }
     }
 
-})
+}

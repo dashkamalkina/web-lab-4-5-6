@@ -1,13 +1,13 @@
-
+import {Spinner} from '../node_modules/spin.js/spin.js';
 
 window.addEventListener("load", async function() {
     const container = document.getElementById("user-container")
     const button = document.getElementById("get-user")
     const preloader = document.getElementById("preloader")
     const errorText = document.getElementById("error-text");
+    new Spinner({ color: '#fff', lines: 12,animation: 'spinner-line-shrink',top: '20%' }).spin(preloader);
 
-
-    var initialAmount = Math.round(Math.random() * 7 + 1)
+    let initialAmount = Math.round(Math.random() * 7 + 1)
     for (let i = 0; i < initialAmount; i++) {
         try {
             let user = await getRandomUser()

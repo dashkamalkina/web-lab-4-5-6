@@ -7,7 +7,7 @@
 }
 #preloader{
 
-    background-image: url("img/1473.gif");
+    /*background-image: url("img/1473.gif");*/
     background-size: cover;
     aspect-ratio: 1;
     display: none;
