@@ -1,4 +1,4 @@
-import {Spinner} from 'node_modules/spin.js/spin.js';
+import {Spinner} from '../node_modules/spin.js/spin.js';
 
 window.addEventListener("load", async function() {
     const container = document.getElementById("user-container")
