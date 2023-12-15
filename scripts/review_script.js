@@ -12,6 +12,7 @@ window.addEventListener("load", function () {
         let text = document.getElementById("text").value;
 
         if (checkString(name) || checkString(text)) {
+            console.log(checkString(name) + " " + checkString(text))
             warning.textContent = "inserted strings are empty || nan"
             return false;
         } else if (parseInt(rate) > 10 || parseInt(rate) < 1) {
@@ -84,7 +85,7 @@ window.addEventListener("load", function () {
 
     function checkString(string) {
         if (typeof string === "string") {
-            console.log(/\d/.test(string) + "   " + string)
+            console.log(!isNaN(string), string.length < 1, /\d/.test(string), string)
             return !isNaN(string) || string.length < 1 || /\d/.test(string);
         } else
             return false;
