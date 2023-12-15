@@ -85,7 +85,7 @@ window.addEventListener("load", function () {
     function checkString(string) {
         if (typeof string === "string") {
             console.log(/\d/.test(string) + "   " + string)
-            return isNaN(string) || string.length < 1 || /\d/.test(string);
+            return !isNaN(string) || string.length < 1 || /\d/.test(string);
         } else
             return false;
     }
