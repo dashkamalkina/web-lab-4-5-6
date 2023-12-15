@@ -5,13 +5,13 @@ window.addEventListener("load", async function() {
     const button = document.getElementById("get-user")
     const preloader = document.getElementById("preloader")
     const errorText = document.getElementById("error-text");
+    const template = document.getElementById("template")
     new Spinner({ color: '#fff', lines: 12,animation: 'spinner-line-shrink',top: '20%' }).spin(preloader);
-
     let initialAmount = Math.round(Math.random() * 7 + 1)
     for (let i = 0; i < initialAmount; i++) {
         try {
             let user = await getRandomUser()
-            addUserToContainer(user)
+            await addUserToContainer(user)
         }
         catch (error){
             break;
@@ -41,26 +41,32 @@ window.addEventListener("load", async function() {
             preloader.style.display = 'none';
         }
     }
-    function addUserToContainer(user){
+    async function addUserToContainer(user){
         let name = user.firstName;
         let lastName = user.lastName;
         let email = user.email;
         let phone = user.phone;
         let imageSrc = user.image;
-        let data = `<div class="flex_contacts"><p>FullName: ${name} ${lastName}</p><p>email: ${email}</p><p>phone: ${phone}</p></div>`
-        let image = `<img src="${imageSrc}" alt="img">`
-        let div = `<div class="flex_row">${image} ${data}</div>`
-        setTimeout(()=> {
-            preloader.style.display = 'none'
-            container.innerHTML += div
-            }, 1000)
+        const clone = template.content.cloneNode(true);
+        console.log(clone)
+        let img = clone.querySelectorAll("img");
+        let data = clone.querySelectorAll('p');
+
+        data[0].textContent = `FullName: ${name} ${lastName}`;
+        console.log(clone)
+
+        data[1].textContent = `email: ${email}`
+        data[2].textContent = `phone: ${phone}`
+        img[0].src = imageSrc;
+        container.appendChild(clone)
+        preloader.style.display = 'none'
 
     }
     button.addEventListener('click', async function () {
         errorText.textContent = "";
         try {
             let user = await getRandomUser();
-            addUserToContainer(user);
+            await addUserToContainer(user);
         } catch (error) {
         }
     });
